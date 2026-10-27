@@ -1,0 +1,228 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Achievements | Naveen G.</title>
+  <meta name="description" content="Personal achievements, certificates, and awards earned by Naveen G." />
+  <meta name="theme-color" content="#06101d" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2306101d'/%3E%3Ctext x='32' y='43' font-size='28' font-family='Arial' font-weight='700' text-anchor='middle' fill='%2338bdf8'%3ENG%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="ambient-glow glow-one"></div>
+  <div class="ambient-glow glow-two"></div>
+
+  <header>
+    <div class="container header-inner">
+      <a href="index.html" class="logo">Naveen<span>.</span></a>
+
+      <nav class="desktop-nav" aria-label="Main navigation">
+        <a href="index.html#about">About</a>
+        <a href="index.html#experience">Experience</a>
+        <a href="index.html#skills">Skills</a>
+        <a href="index.html#projects">Projects</a>
+        <a href="index.html#certificates">Certificates</a>
+        <a href="achievements.html" class="active">Achievements</a>
+        <a href="index.html#contact">Contact</a>
+
+        <div class="nav-social">
+          <a class="social-link" href="https://github.com/hey-naveen" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+            <i class="fa-brands fa-github"></i>
+          </a>
+          <a class="social-link" href="https://www.linkedin.com/in/heynaveen/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <i class="fa-brands fa-linkedin-in"></i>
+          </a>
+        </div>
+      </nav>
+
+      <button class="menu-button" id="menuButton" aria-label="Open navigation" aria-expanded="false" aria-controls="mobileNav">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <nav class="mobile-nav" id="mobileNav" aria-label="Mobile navigation">
+    <a href="index.html#about">About</a>
+    <a href="index.html#experience">Experience</a>
+    <a href="index.html#skills">Skills</a>
+    <a href="index.html#projects">Projects</a>
+    <a href="index.html#certificates">Certificates</a>
+    <a href="achievements.html" class="active">Achievements</a>
+    <a href="index.html#contact">Contact</a>
+
+    <div class="mobile-social">
+      <a class="social-link" href="https://github.com/hey-naveen" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+        <i class="fa-brands fa-github"></i>
+      </a>
+      <a class="social-link" href="https://www.linkedin.com/in/heynaveen/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+        <i class="fa-brands fa-linkedin-in"></i>
+      </a>
+    </div>
+  </nav>
+
+  <main class="page-shell">
+    <div class="container">
+      <header class="page-header">
+        <div class="eyebrow">Personal Milestones</div>
+        <h1>Achievements &amp; Awards</h1>
+        <p class="page-subtitle">
+          A collection of the competitions, certifications, and recognitions that reflect my journey,
+          including academic, technical, and personal milestones.
+        </p>
+      </header>
+
+      <section id="achievementGrid" class="achievement-grid" aria-live="polite"></section>
+    </div>
+  </main>
+
+  <div class="modal" id="achievementModal" aria-hidden="true">
+    <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal-top">
+        <button class="modal-close" id="closeModal" aria-label="Close achievement details">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+        <img id="modalImage" class="modal-image" src="" alt="Achievement preview" />
+      </div>
+      <div class="modal-body">
+        <span id="modalTag" class="card-tag">Award</span>
+        <h2 id="modalTitle" class="modal-title">Achievement title</h2>
+        <div id="modalMeta" class="modal-meta"> </div>
+        <p id="modalText" class="modal-text"></p>
+        <div class="modal-actions">
+          <a id="modalLink" class="btn btn-primary" href="#" target="_blank" rel="noopener noreferrer">
+            <i class="fa-solid fa-link"></i> Open Source / Proof
+          </a>
+          <button id="modalSecondary" class="btn btn-outline" type="button">
+            <i class="fa-solid fa-xmark"></i> Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+    import { achievements } from './Achievements/achievement_content.js';
+    const grid = document.getElementById('achievementGrid');
+    const modal = document.getElementById('achievementModal');
+    const modalImage = document.getElementById('modalImage');
+    const modalTag = document.getElementById('modalTag');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalMeta = document.getElementById('modalMeta');
+    const modalText = document.getElementById('modalText');
+    const modalLink = document.getElementById('modalLink');
+    const closeModalBtn = document.getElementById('closeModal');
+    const modalSecondary = document.getElementById('modalSecondary');
+
+    function formatAchievementDate(date) {
+      const [year, month, day] = date.split('-');
+      return `${day}/${month}/${year}`;
+    }
+
+    function formatAchievementMonthYear(date) {
+      const [year, month] = date.split('-');
+      const monthName = new Date(Number(year), Number(month) - 1).toLocaleString('en', { month: 'short' });
+      return `${monthName}, ${year}`;
+    }
+
+    function renderAchievements() {
+      const sortedAchievements = [...achievements].sort((a, b) => b.date.localeCompare(a.date));
+      sortedAchievements.forEach((item) => {
+        const article = document.createElement('article');
+        article.className = 'achievement-card';
+        article.setAttribute('tabindex', '0');
+        article.setAttribute('role', 'button');
+        article.setAttribute('aria-label', `Open details for ${item.title}`);
+        article.innerHTML = `
+          <div class="card-image-wrap">
+            <img class="card-image" src="${item.image}" alt="${item.title}" loading="lazy" />
+          </div>
+          <div class="card-content">
+            <span class="card-tag">${item.category}</span>
+            <h3 class="card-title">${item.title}</h3>
+            <div class="card-meta">${formatAchievementMonthYear(item.date)}</div>
+          </div>
+        `;
+
+        article.addEventListener('click', () => openModal(item));
+        article.addEventListener('keydown', (event) => {
+          if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            openModal(item);
+          }
+        });
+
+        grid.appendChild(article);
+      });
+    }
+
+    function openModal(item) {
+      modalImage.src = item.image;
+      modalImage.alt = item.title;
+      modalTag.textContent = item.category;
+      modalTitle.textContent = item.title;
+      modalMeta.innerHTML = `<span><i class="fa-solid fa-calendar-days"></i> ${formatAchievementDate(item.date)}</span><span><i class="fa-solid fa-trophy"></i> ${item.category}</span>`;
+      modalText.textContent = item.summary + ' ' + item.details;
+
+      if (item.link && item.link !== '#') {
+        modalLink.href = item.link;
+        modalLink.style.display = 'inline-flex';
+      } else {
+        modalLink.href = '#';
+        modalLink.style.display = 'none';
+      }
+
+      modal.classList.add('open');
+      modal.setAttribute('aria-hidden', 'false');
+    }
+
+    function closeModal() {
+      modal.classList.remove('open');
+      modal.setAttribute('aria-hidden', 'true');
+    }
+
+    closeModalBtn.addEventListener('click', closeModal);
+    modalSecondary.addEventListener('click', closeModal);
+
+    modal.addEventListener('click', (event) => {
+      if (event.target === modal) {
+        closeModal();
+      }
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && modal.classList.contains('open')) {
+        closeModal();
+      }
+    });
+
+    const menuButton = document.getElementById("menuButton");
+    const mobileNav = document.getElementById("mobileNav");
+
+    function closeMenu() {
+      menuButton.classList.remove("open");
+      mobileNav.classList.remove("open");
+      menuButton.setAttribute("aria-expanded", "false");
+    }
+
+    if (menuButton && mobileNav) {
+      menuButton.addEventListener("click", () => {
+        const isOpen = mobileNav.classList.contains("open");
+        mobileNav.classList.toggle("open", !isOpen);
+        menuButton.classList.toggle("open", !isOpen);
+        menuButton.setAttribute("aria-expanded", String(!isOpen));
+      });
+
+      mobileNav.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", closeMenu);
+      });
+    }
+
+    renderAchievements();
+  </script>
+</body>
+</html>

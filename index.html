@@ -1,1 +1,916 @@
-hello world
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Naveen G.</title>
+  <meta name="description" content="Naveen G. — Electronics &amp; Communication Engineering student focused on Digital Design, Verilog, FPGA and Electrical Systems.">
+  <meta name="theme-color" content="#06101d">
+
+  <!-- Social preview -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Naveen G. | Electronics &amp; Communication Engineering">
+  <meta property="og:description" content="Digital Design · Verilog · FPGA · Electrical Systems">
+  <meta property="og:image" content="images\headshot.png">
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2306101d'/%3E%3Ctext x='32' y='43' font-size='28' font-family='Arial' font-weight='700' text-anchor='middle' fill='%2338bdf8'%3ENG%3C/text%3E%3C/svg%3E">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <div class="ambient-glow glow-one"></div>
+  <div class="ambient-glow glow-two"></div>
+
+  <!-- HEADER -->
+  <header>
+    <div class="container header-inner">
+      <a href="#top" class="logo">Naveen<span>.</span></a>
+
+      <nav class="desktop-nav" aria-label="Main navigation">
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#certificates">Certificates</a>
+        <a href="achievements.html">Achievements</a>
+        <a href="#contact">Contact</a>
+
+        <div class="nav-social">
+          <a class="social-link" href="https://github.com/hey-naveen" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+            <i class="fa-brands fa-github"></i>
+          </a>
+          <a class="social-link" href="https://www.linkedin.com/in/heynaveen/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <i class="fa-brands fa-linkedin-in"></i>
+          </a>
+        </div>
+      </nav>
+
+      <button class="menu-button" id="menuButton" aria-label="Open navigation" aria-expanded="false" aria-controls="mobileNav">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- MOBILE NAV -->
+  <nav class="mobile-nav" id="mobileNav" aria-label="Mobile navigation">
+    <a href="#about">About</a>
+    <a href="#experience">Experience</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#certificates">Certificates</a>
+    <a href="achievements.html">Achievements</a>
+    <a href="#contact">Contact</a>
+
+    <div class="mobile-social">
+      <a class="social-link" href="https://github.com/hey-naveen" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+        <i class="fa-brands fa-github"></i>
+      </a>
+      <a class="social-link" href="https://www.linkedin.com/in/heynaveen/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+        <i class="fa-brands fa-linkedin-in"></i>
+      </a>
+    </div>
+  </nav>
+
+  <main id="top">
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container hero-grid">
+
+        <div class="hero-copy reveal">
+          <!-- <div class="hero-kicker">Electronics &amp; Communication Engineering</div> -->
+
+          <h1>Naveen <span>G.</span></h1>
+
+          <div class="hero-role">Building Digital Systems</div>
+          <div class="hero-focus">Digital Design · Verilog · FPGA · Electrical Systems</div>
+
+          <p class="hero-description" style="text-align: justify;">
+            I'm an MS student in Electrical Engineering at IIT Indore, interested in digital hardware 
+            design and efficient computing architectures. My work spans RTL design, FPGA-based systems, 
+            and hardware accelerators, with a focus on translating architectural ideas into practical 
+            hardware implementations.            
+          </p>
+
+          <div class="hero-buttons">
+            <!-- <a class="btn btn-primary" href="#experience"><i class="fa-solid fa-briefcase"></i> View Experience</a> -->
+            <a class="btn btn-outline" href="#projects"><i class="fa-solid fa-code"></i> View Projects</a>
+            <a class="btn btn-primary" href="https://drive.google.com/drive/folders/13UoJldo3ySwUYyMdm_vsdWFym-_gH8d3?usp=sharing" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-file-pdf"></i> Resume</a>
+            <!-- <a class="btn btn-outline" href="https://github.com/hey-naveen" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> GitHub</a> -->
+            <!-- <a class="btn btn-outline" href="#contact"><i class="fa-regular fa-envelope"></i> Contact Me</a> -->
+          </div>
+        </div>
+
+        <div class="hero-photo-wrap reveal delay-2">
+          <div class="hero-photo-frame">
+            <img
+              src="images\headshot.png"
+              alt="Naveen G."
+              class="profile-photo"
+              onerror="this.style.display='none'; document.getElementById('photoPlaceholder').style.display='flex';"
+            >
+            <div class="photo-placeholder" id="photoPlaceholder" aria-hidden="true">NG</div>
+          </div>
+
+          <div class="hero-status">
+            <span class="status-dot"></span>
+            MS · IIT Indore
+          </div>
+        </div>
+
+      </div>
+
+      <div class="scroll-indicator">
+        Scroll
+        <span class="scroll-line"></span>
+      </div>
+    </section>
+
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="container">
+
+        <div class="section-heading reveal">
+          <div>
+            <div class="section-label">01 / Profile</div>
+            <h2 class="section-title">About Me</h2>
+          </div>
+          <p class="section-description">
+            Electronics & Communication Engineering graduate focused on 
+            digital hardware design, RTL development, and hardware acceleration.
+          </p>
+        </div>
+
+        <div class="about-grid">
+
+          <div class="about-card glass-card reveal">
+            <p style="text-align: justify;">
+              I am a postgraduate student at IIT Indore with a B.Tech in Electronics & Communication Engineering
+              from IIIT Ranchi. My experience spans industrial training, research internships, and hands-on 
+              projects in digital design, Verilog/SystemVerilog, FPGA-based systems, and hardware architectures. 
+              I am particularly interested in RTL design and developing efficient hardware accelerators.
+            </p>
+
+            <div class="interest-list">
+              <span class="interest">Digital Design</span>
+              <span class="interest">Verilog HDL</span>
+              <span class="interest">RTL Design</span>
+              <span class="interest">FPGA</span>
+              <span class="interest">Neural Networks</span>
+            </div>
+          </div>
+
+          <div class="academic-card glass-card reveal delay-1">
+            <h3>Academic Snapshot</h3>
+
+            <div class="academic-grid">
+              <div class="academic-item"><small>CGPA</small><strong>9.58</strong></div>
+              <div class="academic-item"><small>10th</small><strong>90.8%</strong></div>
+              <div class="academic-item"><small>12th</small><strong>91.8%</strong></div>
+              <div class="academic-item"><small>Graduation</small><strong>2026</strong></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- EXPERIENCE -->
+    <section id="experience">
+      <div class="container">
+
+        <div class="section-heading reveal">
+          <div>
+            <div class="section-label">02 / Experience</div>
+            <h2 class="section-title">Industrial &amp; Research Exposure</h2>
+          </div>
+          <p class="section-description">
+            Research learning and hands-on industrial exposure across
+            digital design, hydro-generator manufacturing and traction motors.
+          </p>
+        </div>
+
+        <div class="timeline">
+
+          <!-- IIT INDORE -->
+          <article class="experience-card reveal">
+            <span class="timeline-dot"></span>
+
+            <details class="experience-inner" open>
+              <summary class="experience-summary">
+                <div>
+                  <div class="experience-company">Indian Institute of Technology Indore</div>
+                  <div class="experience-role">Research Intern · NSDCS / NSDACS Lab</div>
+                  <div class="experience-meta">2026 · Research-oriented digital design internship</div>
+                </div>
+                <span class="experience-arrow"><i class="fa-solid fa-chevron-down"></i></span>
+              </summary>
+
+              <div class="experience-details">
+                <div class="detail-grid">
+
+                  <div class="detail-block">
+                    <h4>Overview</h4>
+                    <ul>
+                      <li>Working in a research-oriented laboratory environment.</li>
+                      <li>Learning and implementing digital design concepts.</li>
+                      <li>Developing familiarity with FPGA-oriented digital systems.</li>
+                      <li>Studying digital arithmetic architectures.</li>
+                    </ul>
+                  </div>
+
+                  <div class="detail-block">
+                    <h4>Technical Work</h4>
+                    <ul>
+                      <li>Verilog HDL</li>
+                      <li>RTL design fundamentals</li>
+                      <li>Xilinx Vivado design and simulation</li>
+                      <li>Half Adder and Full Adder architectures</li>
+                      <li>Wallace Tree and Dadda Tree architectures</li>
+                      <li>Compressor architectures</li>
+                    </ul>
+                  </div>
+
+                  <div class="detail-block">
+                    <h4>Neural Network Learning</h4>
+                    <ul>
+                      <li>Neural Network fundamentals</li>
+                      <li>ANN fundamentals</li>
+                      <li>CNN fundamentals</li>
+                      <li>RNN fundamentals</li>
+                    </ul>
+                  </div>
+
+                </div>
+              </div>
+            </details>
+          </article>
+
+          <!-- ANDRITZ -->
+          <article class="experience-card reveal">
+            <span class="timeline-dot"></span>
+
+            <details class="experience-inner">
+              <summary class="experience-summary">
+                <div>
+                  <div class="experience-company">ANDRITZ Hydro</div>
+                  <div class="experience-role">Electrical Engineering Intern</div>
+                  <div class="experience-meta">Hydro Generator Manufacturing · Kemano Unit, Canada</div>
+                </div>
+                <span class="experience-arrow"><i class="fa-solid fa-chevron-down"></i></span>
+              </summary>
+
+              <div class="experience-details">
+                <div class="detail-grid">
+
+                  <div class="detail-block">
+                    <h4>Pole Shop Exposure</h4>
+                    <ul>
+                      <li>Pole coil brazing</li>
+                      <li>Pressing and cleaning</li>
+                      <li>Pole stacking</li>
+                      <li>Damper bar brazing</li>
+                      <li>Pole body insulation</li>
+                      <li>Pole coil consolidation</li>
+                      <li>Pole assembly and final painting</li>
+                    </ul>
+                  </div>
+
+                  <div class="detail-block">
+                    <h4>Bar &amp; Coil Shop</h4>
+                    <ul>
+                      <li>Robelling</li>
+                      <li>VPI (Vacuum Pressure Impregnation) process</li>
+                      <li>Insulation and turn-to-turn (IT) testing</li>
+                      <li>OCP EPG observations</li>
+                      <li>High voltage testing</li>
+                      <li>Partial discharge testing</li>
+                    </ul>
+                  </div>
+
+                  <div class="detail-block">
+                    <h4>Stator Core</h4>
+                    <ul>
+                      <li>Stator stacking process</li>
+                      <li>Electrical steel lamination handling</li>
+                      <li>Intermediate and final pressure observations</li>
+                      <li>Core induction-related observations</li>
+                    </ul>
+                  </div>
+
+                  <div class="detail-block">
+                    <h4>Process Exposure</h4>
+                    <ul>
+                      <li>Insulation paper and epoxy systems</li>
+                      <li>Coil consolidation and curing</li>
+                      <li>Insulation resistance (IR) testing</li>
+                      <li>VPI vacuum and pressure stages</li>
+                      <li>HV and partial discharge test procedures</li>
+                    </ul>
+                  </div>
+
+                </div>
+              </div>
+            </details>
+          </article>
+
+          <!-- CG POWER -->
+          <article class="experience-card reveal">
+            <span class="timeline-dot"></span>
+
+            <details class="experience-inner">
+              <summary class="experience-summary">
+                <div>
+                  <div class="experience-company">CG Power</div>
+                  <div class="experience-role">Electrical Engineering Intern / Industrial Trainee</div>
+                  <div class="experience-meta">8-week internship · June–July 2026 · AC Traction Motor Manufacturing</div>
+                </div>
+                <span class="experience-arrow"><i class="fa-solid fa-chevron-down"></i></span>
+              </summary>
+
+              <div class="experience-details">
+                <div class="detail-grid">
+
+                  <div class="detail-block">
+                    <h4>Manufacturing Exposure</h4>
+                    <ul>
+                      <li>AC traction motor manufacturing</li>
+                      <li>Motor assembly</li>
+                      <li>Stator winding</li>
+                      <li>VPI process</li>
+                      <li>Rotor assembly</li>
+                    </ul>
+                  </div>
+
+                  <div class="detail-block">
+                    <h4>Electrical Testing</h4>
+                    <ul>
+                      <li>Insulation Resistance (IR) testing</li>
+                      <li>High Voltage (HV) testing</li>
+                      <li>No-load testing</li>
+                      <li>Test readings and observations</li>
+                    </ul>
+                  </div>
+
+                </div>
+              </div>
+            </details>
+          </article>
+
+          <!-- BHEL -->
+          <article class="experience-card reveal">
+            <span class="timeline-dot"></span>
+
+            <details class="experience-inner">
+              <summary class="experience-summary">
+                <div>
+                  <div class="experience-company">BHEL Bhopal</div>
+                  <div class="experience-role">Industrial Training / Plant Visit</div>
+                  <div class="experience-meta">Electrical equipment and manufacturing exposure</div>
+                </div>
+                <span class="experience-arrow"><i class="fa-solid fa-chevron-down"></i></span>
+              </summary>
+
+              <div class="experience-details">
+                <div class="detail-grid">
+                  <div class="detail-block">
+                    <h4>Topics Observed</h4>
+                    <ul>
+                      <li>Control panels</li>
+                      <li>Transformer components</li>
+                      <li>Capacitor bushings</li>
+                      <li>Coil insulation</li>
+                      <li>Traction motors</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </details>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- SKILLS -->
+    <section id="skills">
+      <div class="container">
+
+        <div class="section-heading reveal">
+          <div>
+            <div class="section-label">03 / Technical Stack</div>
+            <h2 class="section-title">Skills</h2>
+          </div>
+          <p class="section-description">
+            Focused on HDL, digital design, verification, and hardware-oriented
+            problem solving with practical implementation experience.
+          </p>
+        </div>
+
+        <div class="skills-grid">
+
+          <div class="skill-card glass-card reveal">
+            <div class="skill-number">01</div>
+            <h3>HDL &amp; Digital Design</h3>
+            <div class="chip-list">
+              <span class="chip">Verilog</span>
+              <span class="chip">SystemVerilog</span>
+              <span class="chip">RTL Design</span>
+              <span class="chip">FSMs</span>
+              <span class="chip">Sequential Logic</span>
+              <span class="chip">Pipelining</span>
+            </div>
+          </div>
+
+          <div class="skill-card glass-card reveal delay-1">
+            <div class="skill-number">02</div>
+            <h3>Verification</h3>
+            <div class="chip-list">
+              <span class="chip">Self-checking Testbenches</span>
+              <span class="chip">Scoreboards</span>
+              <span class="chip">Constrained-Random Testing</span>
+              <span class="chip">TLM Mailboxes</span>
+              <span class="chip">Waveform Debugging</span>
+              <span class="chip">RTL Validation</span>
+            </div>
+          </div>
+
+          <div class="skill-card glass-card reveal delay-2">
+            <div class="skill-number">03</div>
+            <h3>Tools &amp; Platforms</h3>
+            <div class="chip-list">
+              <span class="chip">Linux</span>
+              <span class="chip">Xilinx Vivado</span>
+              <span class="chip">Git</span>
+              <span class="chip">GitHub</span>
+              <span class="chip">COMSOL Multiphysics</span>
+            </div>
+          </div>
+
+          <div class="skill-card glass-card reveal">
+            <div class="skill-number">04</div>
+            <h3>Programming</h3>
+            <div class="chip-list">
+              <span class="chip">C</span>
+              <span class="chip">Python</span>
+              <span class="chip">MATLAB</span>
+              <span class="chip">Problem Solving</span>
+            </div>
+          </div>
+
+          <div class="skill-card glass-card reveal delay-1">
+            <div class="skill-number">05</div>
+            <h3>AI / ML Fundamentals</h3>
+            <div class="chip-list">
+              <span class="chip">Neural Networks</span>
+              <span class="chip">ANN</span>
+              <span class="chip">CNN</span>
+              <span class="chip">RNN</span>
+            </div>
+          </div>
+
+          <div class="skill-card glass-card reveal delay-2">
+            <div class="skill-number">06</div>
+            <h3>Research &amp; Simulation</h3>
+            <div class="chip-list">
+              <span class="chip">Optical Waveguides</span>
+              <span class="chip">Signal Processing</span>
+              <span class="chip">Quantum Logic Design</span>
+              <span class="chip">Performance Optimization</span>
+              <span class="chip">Simulation Analysis</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- PROJECTS -->
+    <section id="projects">
+      <div class="container">
+
+        <div class="section-heading reveal">
+          <div>
+            <div class="section-label">04 / Selected Work</div>
+            <h2 class="section-title">Projects</h2>
+          </div>
+          <p class="section-description">
+            Hardware and digital-design work first, followed by selected
+            software projects.
+          </p>
+        </div>
+
+        <div class="projects-grid">
+
+          <article class="project-card glass-card reveal">
+            <div class="project-top">
+              <span class="project-number">01</span>
+              <span class="project-type">Digital Design</span>
+            </div>
+            <h3>5:2 Compressor — Verilog RTL Implementation</h3>
+            <p>
+              RTL functional implementation of a 5:2 compressor architecture
+              using Verilog HDL and Xilinx Vivado.
+            </p>
+            <div class="project-tags">
+              <span class="project-tag">Verilog HDL</span>
+              <span class="project-tag">RTL Design</span>
+              <span class="project-tag">Digital Arithmetic</span>
+              <span class="project-tag">Simulation</span>
+              <span class="project-tag">Vivado</span>
+            </div>
+          </article>
+
+          <article class="project-card glass-card reveal delay-1">
+            <div class="project-top">
+              <span class="project-number">02</span>
+              <span class="project-type">Digital Arithmetic</span>
+            </div>
+            <h3>Wallace Tree Adder / Multiplier Architecture</h3>
+            <p>
+              Implemented and studied Wallace Tree reduction architecture
+              for efficient binary arithmetic using Verilog HDL.
+            </p>
+            <div class="project-tags">
+              <span class="project-tag">Partial Products</span>
+              <span class="project-tag">Carry-Save Reduction</span>
+              <span class="project-tag">Half Adders</span>
+              <span class="project-tag">Full Adders</span>
+              <span class="project-tag">Verilog</span>
+              <span class="project-tag">Vivado</span>
+            </div>
+          </article>
+
+          <article class="project-card glass-card reveal">
+            <div class="project-top">
+              <span class="project-number">03</span>
+              <span class="project-type">Digital Arithmetic</span>
+            </div>
+            <h3>Dadda Tree Adder / Multiplier Architecture</h3>
+            <p>
+              Studied and implemented Dadda Tree reduction architecture
+              using Verilog HDL, focusing on efficient reduction of
+              partial products.
+            </p>
+            <div class="project-tags">
+              <span class="project-tag">Partial Products</span>
+              <span class="project-tag">Half Adders</span>
+              <span class="project-tag">Full Adders</span>
+              <span class="project-tag">Reduction Stages</span>
+              <span class="project-tag">Verilog</span>
+              <span class="project-tag">Vivado</span>
+            </div>
+          </article>
+
+          <article class="project-card glass-card reveal delay-1">
+            <div class="project-top">
+              <span class="project-number">04</span>
+              <span class="project-type">Electrical</span>
+            </div>
+            <h3>Power System Fault Detection</h3>
+            <p>
+              A Java-based project focused on identifying common electrical
+              power-system fault conditions.
+            </p>
+            <div class="project-tags">
+              <span class="project-tag">Java</span>
+              <span class="project-tag">Power Systems</span>
+              <span class="project-tag">Fault Detection</span>
+              <span class="project-tag">LG</span>
+              <span class="project-tag">LL</span>
+              <span class="project-tag">LLG</span>
+              <span class="project-tag">LLL</span>
+            </div>
+            <div class="project-links">
+              <a class="project-link" href="https://github.com/hey-naveen/PowerFaultDetection" target="_blank" rel="noopener noreferrer">
+                <i class="fa-brands fa-github"></i> View Code
+              </a>
+            </div>
+          </article>
+
+          <article class="project-card glass-card reveal">
+            <div class="project-top">
+              <span class="project-number">05</span>
+              <span class="project-type">Software</span>
+            </div>
+            <h3>HireSense — Resume Parsing &amp; Job Matching Platform</h3>
+            <p>
+              A software project focused on resume parsing and job
+              matching/recommendation concepts using Java, MySQL and
+              REST API concepts.
+            </p>
+            <div class="project-tags">
+              <span class="project-tag">Java</span>
+              <span class="project-tag">MySQL</span>
+              <span class="project-tag">REST API</span>
+            </div>
+            <div class="project-links">
+              <a class="project-link" href="" target="_blank" rel="noopener noreferrer">
+                <i class="fa-brands fa-github"></i> View Code
+              </a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- CERTIFICATES -->
+    <section id="certificates">
+      <div class="container">
+
+        <div class="section-heading reveal">
+          <div>
+            <div class="section-label">05 / Credentials</div>
+            <h2 class="section-title">Certifications &amp; Training</h2>
+          </div>
+          <p class="section-description">
+            Selected credentials and industrial learning experiences.
+            Click any certificate to preview it.
+          </p>
+        </div>
+
+        <div class="cert-grid">
+
+          <article class="cert-card reveal" tabindex="0" role="button"
+                   aria-label="View certificate: NPTEL Silver 81%"
+                   data-certificate="certificates/nptel.jpg" data-title="NPTEL — Silver — 81%">
+            <div class="cert-image-wrap">
+              <img src="" alt="NPTEL certificate" class="cert-image" loading="lazy">
+              <div class="cert-overlay"><span><i class="fa-solid fa-expand"></i> View Certificate</span></div>
+            </div>
+            <div class="cert-icon"><i class="fa-solid fa-award"></i></div>
+            <h3>NPTEL — Silver — 81%</h3>
+          </article>
+
+          <article class="cert-card reveal delay-1" tabindex="0" role="button"
+                   aria-label="View certificate: Cisco Python Essentials 1"
+                   data-certificate="certificates/python-essentials-1.jpg" data-title="Cisco Python Essentials 1">
+            <div class="cert-image-wrap">
+              <img src="certificates/python-essentials-1.jpg" alt="Cisco Python Essentials 1 certificate" class="cert-image" loading="lazy">
+              <div class="cert-overlay"><span><i class="fa-solid fa-expand"></i> View Certificate</span></div>
+            </div>
+            <div class="cert-icon"><i class="fa-brands fa-python"></i></div>
+            <h3>Cisco Python Essentials 1</h3>
+          </article>
+
+          <article class="cert-card reveal delay-2" tabindex="0" role="button"
+                   aria-label="View certificate: Cisco Python Essentials 2"
+                   data-certificate="certificates/python-essentials-2.jpg" data-title="Cisco Python Essentials 2">
+            <div class="cert-image-wrap">
+              <img src="certificates/python-essentials-2.jpg" alt="Cisco Python Essentials 2 certificate" class="cert-image" loading="lazy">
+              <div class="cert-overlay"><span><i class="fa-solid fa-expand"></i> View Certificate</span></div>
+            </div>
+            <div class="cert-icon"><i class="fa-brands fa-python"></i></div>
+            <h3>Cisco Python Essentials 2</h3>
+          </article>
+
+          <article class="cert-card reveal" tabindex="0" role="button"
+                   aria-label="View certificate: DroneTech Workshop"
+                   data-certificate="certificates/dronetech.jpg" data-title="DroneTech Workshop">
+            <div class="cert-image-wrap">
+              <img src="certificates/dronetech.jpg" alt="DroneTech Workshop certificate" class="cert-image" loading="lazy">
+              <div class="cert-overlay"><span><i class="fa-solid fa-expand"></i> View Certificate</span></div>
+            </div>
+            <div class="cert-icon"><i class="fa-solid fa-plane"></i></div>
+            <h3>DroneTech Workshop</h3>
+            <p>MPCST / MPSEDC / IIT Indore</p>
+          </article>
+
+          <article class="cert-card reveal delay-1" tabindex="0" role="button"
+                   aria-label="View certificate: BHEL Industrial Training"
+                   data-certificate="certificates/bhel.jpg" data-title="BHEL Industrial Training / Exposure">
+            <div class="cert-image-wrap">
+              <img src="certificates/bhel.jpg" alt="BHEL training certificate" class="cert-image" loading="lazy">
+              <div class="cert-overlay"><span><i class="fa-solid fa-expand"></i> View Certificate</span></div>
+            </div>
+            <div class="cert-icon"><i class="fa-solid fa-industry"></i></div>
+            <h3>BHEL Industrial Training / Exposure</h3>
+          </article>
+
+          <article class="cert-card reveal delay-2" tabindex="0" role="button"
+                   aria-label="View certificate: CG Power Internship"
+                   data-certificate="certificates/cg-power.jpg" data-title="CG Power Internship">
+            <div class="cert-image-wrap">
+              <img src="certificates/cg-power.jpg" alt="CG Power internship certificate" class="cert-image" loading="lazy">
+              <div class="cert-overlay"><span><i class="fa-solid fa-expand"></i> View Certificate</span></div>
+            </div>
+            <div class="cert-icon"><i class="fa-solid fa-gears"></i></div>
+            <h3>CG Power Internship</h3>
+            <p>8-week internship · June–July 2026</p>
+          </article>
+
+          <article class="cert-card reveal" tabindex="0" role="button"
+                   aria-label="View certificate: ANDRITZ Hydro Internship"
+                   data-certificate="certificates/andritz.jpg" data-title="ANDRITZ Hydro Internship">
+            <div class="cert-image-wrap">
+              <img src="certificates/andritz.jpg" alt="ANDRITZ Hydro internship certificate" class="cert-image" loading="lazy">
+              <div class="cert-overlay"><span><i class="fa-solid fa-expand"></i> View Certificate</span></div>
+            </div>
+            <div class="cert-icon"><i class="fa-solid fa-bolt"></i></div>
+            <h3>ANDRITZ Hydro Internship</h3>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- TOOLS
+    <section>
+      <div class="container">
+
+        <div class="section-heading reveal">
+          <div>
+            <div class="section-label">06 / Development Tools</div>
+            <h2 class="section-title">Tools</h2>
+          </div>
+          <p class="section-description">
+            Core tools used for design, version control, and project work.
+          </p>
+        </div>
+
+        <div class="productivity reveal">
+          <span class="chip"><i class="fa-solid fa-microchip"></i> Xilinx Vivado</span>
+          <span class="chip"><i class="fa-brands fa-git-alt"></i> Git</span>
+          <span class="chip"><i class="fa-brands fa-github"></i> GitHub</span>
+          <span class="chip"><i class="fa-solid fa-code"></i> VS Code</span>
+        </div>
+
+      </div>
+    </section> -->
+
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="container">
+
+        <div class="section-heading reveal">
+          <div>
+            <div class="section-label">06 / Connect</div>
+            <h2 class="section-title">Say Hello</h2>
+          </div>
+        </div>
+
+        <div class="contact-box glass-card reveal">
+          <div>
+            <h3>Let's connect.</h3>
+            <p>
+              Naveen G. · B.Tech Electronics &amp; Communication Engineering ·
+              IIIT Ranchi · Batch 2026
+            </p>
+          </div>
+
+          <div class="contact-links">
+            <a class="contact-link" href="mailto:naveenkumaar.ece@gmail.com">
+              <i class="fa-regular fa-envelope"></i> Email
+            </a>
+            <a class="contact-link" href="https://drive.google.com/drive/folders/13UoJldo3ySwUYyMdm_vsdWFym-_gH8d3?usp=sharing" target="_blank" rel="noopener noreferrer">
+              <i class="fa-solid fa-file-pdf"></i> Resume
+            </a>
+            <a class="contact-link" href="https://github.com/hey-naveen" target="_blank" rel="noopener noreferrer">
+              <i class="fa-brands fa-github"></i> GitHub
+            </a>
+            <a class="contact-link" href="https://www.linkedin.com/in/heynaveen/" target="_blank" rel="noopener noreferrer">
+              <i class="fa-brands fa-linkedin-in"></i> LinkedIn
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- CERTIFICATE MODAL -->
+  <div class="cert-modal" id="certModal" role="dialog" aria-modal="true" aria-label="Certificate preview" aria-hidden="true">
+    <div class="modal-content">
+      <button class="modal-close" id="modalClose" aria-label="Close certificate">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <img id="modalImage" alt="Certificate preview">
+    </div>
+  </div>
+
+  <footer>
+    © 2026 Naveen G.. <span>Built with HTML, CSS &amp; JavaScript.</span>
+  </footer>
+
+  <script>
+    /* ---------- Mobile menu ---------- */
+    const menuButton = document.getElementById("menuButton");
+    const mobileNav = document.getElementById("mobileNav");
+
+    function closeMenu() {
+      menuButton.classList.remove("open");
+      mobileNav.classList.remove("open");
+      menuButton.setAttribute("aria-expanded", "false");
+    }
+
+    menuButton.addEventListener("click", () => {
+      const isOpen = mobileNav.classList.toggle("open");
+      menuButton.classList.toggle("open", isOpen);
+      menuButton.setAttribute("aria-expanded", String(isOpen));
+    });
+
+    document.querySelectorAll(".mobile-nav a").forEach(link => {
+      link.addEventListener("click", closeMenu);
+    });
+
+    document.addEventListener("click", event => {
+      if (
+        mobileNav.classList.contains("open") &&
+        !mobileNav.contains(event.target) &&
+        !menuButton.contains(event.target)
+      ) {
+        closeMenu();
+      }
+    });
+
+    /* ---------- Scroll reveal ---------- */
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          el.classList.add("visible");
+          setTimeout(() => el.classList.add("done"), 900);
+          observer.unobserve(el);
+        }
+      });
+    }, { threshold: 0.08 });
+
+    document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+
+    /* ---------- Experience accordion ---------- */
+    const experienceDetails = document.querySelectorAll(".experience-inner");
+
+    experienceDetails.forEach(detail => {
+      detail.addEventListener("toggle", () => {
+        if (!detail.open) return;
+        experienceDetails.forEach(other => {
+          if (other !== detail) other.open = false;
+        });
+      });
+    });
+
+    /* ---------- Certificate modal ---------- */
+    const certModal = document.getElementById("certModal");
+    const modalImage = document.getElementById("modalImage");
+    const modalClose = document.getElementById("modalClose");
+    let lastFocused = null;
+
+    function openModal(card) {
+      lastFocused = card;
+      modalImage.src = card.dataset.certificate;
+      modalImage.alt = card.dataset.title || "Certificate preview";
+      certModal.classList.add("active");
+      certModal.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+      modalClose.focus();
+    }
+
+    function closeModal() {
+      certModal.classList.remove("active");
+      certModal.setAttribute("aria-hidden", "true");
+      modalImage.removeAttribute("src");
+      document.body.style.overflow = "";
+      if (lastFocused) lastFocused.focus();
+    }
+
+    document.querySelectorAll(".cert-card").forEach(card => {
+      card.addEventListener("click", () => openModal(card));
+      card.addEventListener("keydown", event => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          openModal(card);
+        }
+      });
+    });
+
+    modalClose.addEventListener("click", closeModal);
+
+    certModal.addEventListener("click", event => {
+      if (event.target === certModal) closeModal();
+    });
+
+    document.addEventListener("keydown", event => {
+      if (event.key !== "Escape") return;
+      if (certModal.classList.contains("active")) closeModal();
+      closeMenu();
+    });
+  </script>
+
+</body>
+</html>
