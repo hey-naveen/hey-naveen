@@ -81,12 +81,35 @@
   </main>
 
   <div class="modal" id="achievementModal" aria-hidden="true">
+    <div class="modal-card-controls" id="modalCardControls" aria-label="Achievement navigation" hidden>
+      <button class="modal-card-arrow" id="previousAchievement" type="button" aria-label="Previous achievement">
+        <i class="fa-solid fa-chevron-left"></i>
+      </button>
+      <button class="modal-card-arrow" id="nextAchievement" type="button" aria-label="Next achievement">
+        <i class="fa-solid fa-chevron-right"></i>
+      </button>
+    </div>
     <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
       <div class="modal-top">
         <button class="modal-close" id="closeModal" aria-label="Close achievement details">
           <i class="fa-solid fa-xmark"></i>
         </button>
-        <img id="modalImage" class="modal-image" src="" alt="Achievement preview" />
+        <div class="modal-image-viewport">
+          <div class="modal-image-track" id="modalImageTrack">
+            <img id="modalPreviousImage" class="modal-image" src="" alt="" aria-hidden="true" />
+            <img id="modalImage" class="modal-image" src="" alt="Achievement preview" />
+            <img id="modalNextImage" class="modal-image" src="" alt="" aria-hidden="true" />
+          </div>
+        </div>
+        <div class="modal-gallery-controls" id="modalGalleryControls" hidden>
+          <button class="modal-gallery-arrow" id="modalPrevious" type="button" aria-label="Previous image">
+            <i class="fa-solid fa-chevron-left"></i>
+          </button>
+          <span class="modal-gallery-count" id="modalGalleryCount" aria-live="polite"></span>
+          <button class="modal-gallery-arrow" id="modalNext" type="button" aria-label="Next image">
+            <i class="fa-solid fa-chevron-right"></i>
+          </button>
+        </div>
       </div>
       <div class="modal-body">
         <span id="modalTag" class="card-tag">Award</span>
@@ -109,28 +132,66 @@
     import { achievements } from './Achievements/achievement_content.js';
     const grid = document.getElementById('achievementGrid');
     const modal = document.getElementById('achievementModal');
+    const modalBox = modal.querySelector('.modal-box');
+    const modalCardControls = document.getElementById('modalCardControls');
+    const previousAchievement = document.getElementById('previousAchievement');
+    const nextAchievement = document.getElementById('nextAchievement');
+    const modalImageTrack = document.getElementById('modalImageTrack');
+    const modalPreviousImage = document.getElementById('modalPreviousImage');
     const modalImage = document.getElementById('modalImage');
+    const modalNextImage = document.getElementById('modalNextImage');
     const modalTag = document.getElementById('modalTag');
     const modalTitle = document.getElementById('modalTitle');
     const modalMeta = document.getElementById('modalMeta');
     const modalText = document.getElementById('modalText');
     const modalLink = document.getElementById('modalLink');
+    const modalGalleryControls = document.getElementById('modalGalleryControls');
+    const modalGalleryCount = document.getElementById('modalGalleryCount');
+    const modalPrevious = document.getElementById('modalPrevious');
+    const modalNext = document.getElementById('modalNext');
     const closeModalBtn = document.getElementById('closeModal');
     const modalSecondary = document.getElementById('modalSecondary');
+    let sortedAchievements = [];
+    let currentAchievementIndex = -1;
+    let isAchievementSliding = false;
+    let achievementTransitionId = 0;
+    let touchStartPoint;
+    let modalImages = [];
+    let currentModalImage = 0;
+    let currentAchievement;
+    let imageSlideTimer;
+    let pendingSlideDirection = 0;
+    let isImageSliding = false;
+
+    function formatAcademicYear(date) {
+      const match = date.match(/^(\d{4})-(\d{2})$/);
+      if (!match || Number(match[2]) <= 12) return null;
+      return `${match[1]}–${match[2]}`;
+    }
 
     function formatAchievementDate(date) {
+      const academicYear = formatAcademicYear(date);
+      if (academicYear) return academicYear;
+
       const [year, month, day] = date.split('-');
+      if (!day) {
+        return new Date(Number(year), Number(month) - 1).toLocaleString('en', { month: 'long', year: 'numeric' });
+      }
       return `${day}/${month}/${year}`;
     }
 
     function formatAchievementMonthYear(date) {
+      const academicYear = formatAcademicYear(date);
+      if (academicYear) return academicYear;
+
       const [year, month] = date.split('-');
       const monthName = new Date(Number(year), Number(month) - 1).toLocaleString('en', { month: 'short' });
       return `${monthName}, ${year}`;
     }
 
     function renderAchievements() {
-      const sortedAchievements = [...achievements].sort((a, b) => b.date.localeCompare(a.date));
+      sortedAchievements = [...achievements].sort((a, b) => b.date.localeCompare(a.date));
+      modalCardControls.hidden = sortedAchievements.length < 2;
       sortedAchievements.forEach((item) => {
         const article = document.createElement('article');
         article.className = 'achievement-card';
@@ -161,15 +222,20 @@
     }
 
     function openModal(item) {
-      modalImage.src = item.image;
-      modalImage.alt = item.title;
+      currentAchievementIndex = sortedAchievements.indexOf(item);
+      stopImageSlider();
+      currentAchievement = item;
+      modalImages = item.images?.length ? item.images : [item.image];
+      currentModalImage = 0;
+      resetModalImageTrack();
+      updateModalImages(item);
+      modalGalleryControls.hidden = modalImages.length < 2;
       modalTag.textContent = item.category;
       modalTitle.textContent = item.title;
       modalMeta.innerHTML = `<span><i class="fa-solid fa-calendar-days"></i> ${formatAchievementDate(item.date)}</span><span><i class="fa-solid fa-trophy"></i> ${item.category}</span>`;
       modalText.textContent = item.summary + ' ' + item.details;
 
       if (item.link && item.link !== '#') {
-        modalLink.href = item.link;
         modalLink.style.display = 'inline-flex';
       } else {
         modalLink.href = '#';
@@ -178,9 +244,163 @@
 
       modal.classList.add('open');
       modal.setAttribute('aria-hidden', 'false');
+
+      if (modalImages.length > 1) {
+        imageSlideTimer = window.setInterval(() => changeModalImage(item, 1), 2000);
+      }
+    }
+
+    function navigateAchievement(direction) {
+      if (isAchievementSliding || sortedAchievements.length < 2) {
+        return;
+      }
+
+      isAchievementSliding = true;
+      stopImageSlider();
+      const transitionId = ++achievementTransitionId;
+      const exitClass = direction > 0 ? 'card-slide-out-next' : 'card-slide-out-previous';
+      const enterClass = direction > 0 ? 'card-slide-in-next' : 'card-slide-in-previous';
+      const exitAnimation = direction > 0 ? 'achievement-slide-out-next' : 'achievement-slide-out-previous';
+      const enterAnimation = direction > 0 ? 'achievement-slide-in-next' : 'achievement-slide-in-previous';
+
+      function afterModalAnimation(animationName, duration, callback) {
+        let completed = false;
+        const finish = (event) => {
+          if (event && (event.target !== modalBox || event.animationName !== animationName)) {
+            return;
+          }
+          if (completed) {
+            return;
+          }
+
+          completed = true;
+          window.clearTimeout(fallbackTimer);
+          modalBox.removeEventListener('animationend', finish);
+          callback();
+        };
+        const fallbackTimer = window.setTimeout(() => finish(), duration + 100);
+        modalBox.addEventListener('animationend', finish);
+      }
+
+      afterModalAnimation(exitAnimation, 180, () => {
+        if (transitionId !== achievementTransitionId) {
+          return;
+        }
+
+        modalBox.classList.remove(exitClass);
+        currentAchievementIndex = (currentAchievementIndex + direction + sortedAchievements.length) % sortedAchievements.length;
+        openModal(sortedAchievements[currentAchievementIndex]);
+        afterModalAnimation(enterAnimation, 260, () => {
+          if (transitionId !== achievementTransitionId) {
+            return;
+          }
+          modalBox.classList.remove(enterClass);
+          isAchievementSliding = false;
+        });
+        modalBox.classList.add(enterClass);
+      });
+      modalBox.classList.add(exitClass);
+    }
+
+    function updateModalImages(item) {
+      const previousIndex = (currentModalImage - 1 + modalImages.length) % modalImages.length;
+      const nextIndex = (currentModalImage + 1) % modalImages.length;
+      const image = modalImages[currentModalImage];
+      modalPreviousImage.src = modalImages[previousIndex];
+      modalImage.src = image;
+      modalNextImage.src = modalImages[nextIndex];
+      modalImage.alt = `${item.title} image ${currentModalImage + 1} of ${modalImages.length}`;
+      modalGalleryCount.textContent = `${currentModalImage + 1} / ${modalImages.length}`;
+
+      if (item.link && item.link !== '#') {
+        modalLink.href = item.link === item.image ? image : item.link;
+      }
+    }
+
+    function changeModalImage(item, direction) {
+      if (modalImages.length < 2 || isImageSliding) {
+        return;
+      }
+
+      pendingSlideDirection = direction;
+      isImageSliding = true;
+      modalImageTrack.style.transform = direction > 0
+        ? 'translateX(-66.666667%)'
+        : 'translateX(0)';
+    }
+
+    modalImageTrack.addEventListener('transitionend', (event) => {
+      if (event.target !== modalImageTrack || event.propertyName !== 'transform' || !pendingSlideDirection) {
+        return;
+      }
+
+      currentModalImage = (currentModalImage + pendingSlideDirection + modalImages.length) % modalImages.length;
+      pendingSlideDirection = 0;
+      resetModalImageTrack();
+      updateModalImages(currentAchievement);
+    });
+
+    function resetModalImageTrack() {
+      pendingSlideDirection = 0;
+      isImageSliding = false;
+      modalImageTrack.classList.add('resetting');
+      modalImageTrack.style.transform = 'translateX(-33.333333%)';
+      void modalImageTrack.offsetWidth;
+      modalImageTrack.classList.remove('resetting');
+    }
+
+    modalPrevious.addEventListener('click', () => changeModalImage(currentAchievement, -1));
+    modalNext.addEventListener('click', () => changeModalImage(currentAchievement, 1));
+    previousAchievement.addEventListener('click', () => navigateAchievement(-1));
+    nextAchievement.addEventListener('click', () => navigateAchievement(1));
+
+    modalBox.addEventListener('touchstart', (event) => {
+      if (event.touches.length !== 1
+        || event.target.closest('button, a, input, select, textarea, .modal-gallery-controls')) {
+        touchStartPoint = undefined;
+        return;
+      }
+
+      const touch = event.touches[0];
+      touchStartPoint = { x: touch.clientX, y: touch.clientY, identifier: touch.identifier };
+    });
+
+    modalBox.addEventListener('touchend', (event) => {
+      if (!touchStartPoint) {
+        touchStartPoint = undefined;
+        return;
+      }
+
+      const touch = [...event.changedTouches].find((item) => item.identifier === touchStartPoint.identifier);
+      if (!touch) {
+        return;
+      }
+
+      const horizontalDistance = touch.clientX - touchStartPoint.x;
+      const verticalDistance = touch.clientY - touchStartPoint.y;
+      touchStartPoint = undefined;
+
+      if (Math.abs(horizontalDistance) >= 60 && Math.abs(horizontalDistance) > Math.abs(verticalDistance) * 1.25) {
+        navigateAchievement(horizontalDistance < 0 ? 1 : -1);
+      }
+    });
+
+    modalBox.addEventListener('touchcancel', () => {
+      touchStartPoint = undefined;
+    });
+
+    function stopImageSlider() {
+      if (imageSlideTimer !== undefined) {
+        window.clearInterval(imageSlideTimer);
+        imageSlideTimer = undefined;
+      }
     }
 
     function closeModal() {
+      achievementTransitionId += 1;
+      isAchievementSliding = false;
+      modalBox.classList.remove('card-slide-out-next', 'card-slide-out-previous', 'card-slide-in-next', 'card-slide-in-previous');
+      stopImageSlider();
       modal.classList.remove('open');
       modal.setAttribute('aria-hidden', 'true');
     }
@@ -195,8 +415,18 @@
     });
 
     document.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape' && modal.classList.contains('open')) {
+      if (!modal.classList.contains('open')) {
+        return;
+      }
+
+      if (event.key === 'Escape') {
         closeModal();
+      } else if (event.key === 'ArrowLeft') {
+        event.preventDefault();
+        navigateAchievement(-1);
+      } else if (event.key === 'ArrowRight') {
+        event.preventDefault();
+        navigateAchievement(1);
       }
     });
 
